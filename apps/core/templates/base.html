@@ -10,18 +10,18 @@
     </head>
 
     <body>
-        <nav class="navbar is-dark">
+        <nav class="navbar is-dark" id="navbarapp">
             <div class="navbar-brand">
                 <a class="navbar-item" href="{% url 'frontpage' %}">Binomio Store</a>
 
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+                <a @click="toggleMenu()" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
 
-            <div id="main-navbar" class="navbar-menu">
+            <div id="main-navbar" class="navbar-menu" :class="{ 'is-active': menuClass }">
                 <div class="navbar-end">
                     {% for category in menu_categories %}
                         <a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
@@ -72,9 +72,21 @@
                 el: '#navbarapp',
                 delimiters: ['[[', ']]'],
                 store: store,
+                data() {
+                    return {
+                        menuClass: false
+                    }
+                },
                 computed: {
                     numItems: function() {
                         return store.state.numItems
+                    }
+                },
+                methods: {
+                    toggleMenu() {
+                        console.log('toggleMenu');
+
+                        this.menuClass = !this.menuClass;
                     }
                 }
 
