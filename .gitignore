@@ -2,3 +2,8 @@
 ######################
 .DS_Store
 .DS_Store?
+
+# Database stuff
+*.sqlite3
+migrations/
+db.sqlite3
