@@ -157,7 +157,7 @@
             },
             totalCostWithCoupon: function() {
                 if (this.coupon_value > 0) {
-                    return store.state.totalCost * (parseInt(this.coupon_value) / 100);
+                    return store.state.totalCost - (store.state.totalCost * (parseInt(this.coupon_value) / 100));
                 } else {
                     return store.state.totalCost;
                 }         
@@ -276,7 +276,7 @@
                             .then((response) => {
                                 console.log(response)
 
-                                for (var i = 0; i < this.products.lenght; i++) {
+                                for (var i = 0; i < this.products.length; i++) {
                                     var product = this.products[i];
 
                                     if (product.id === product_id) {
@@ -321,7 +321,7 @@
                     })
                     .then((response) => {
                         console.log(response)
-                        for (var i = 0; i < this.products.lenght; i++) {
+                        for (var i = 0; i < this.products.length; i++) {
                             var product = this.products[i];
 
                             if (product.id === product_id) {
